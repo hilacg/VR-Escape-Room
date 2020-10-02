@@ -44,7 +44,6 @@ public class CodeLock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Code.code);
         if (Code.code.Length == codeLength)
         { 
             attemptedCode = Code.code;
