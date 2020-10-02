@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Two : MonoBehaviour, ClickAction
+public class ButtonNameToCode : MonoBehaviour, ClickAction
 {
     public void doAction()
     {
-        Code.code = Code.code + "2";
+        Code.code = Code.code + this.name;
     }
 }
