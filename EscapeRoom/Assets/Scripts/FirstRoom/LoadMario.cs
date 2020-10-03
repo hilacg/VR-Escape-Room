@@ -13,7 +13,7 @@ public class LoadMario : MonoBehaviour, ClickAction
     public void doAction()
     {
         sceneHandler.SaveScene();
-
+        Cursor.lockState = CursorLockMode.Confined;
         sceneHandler.LoadScene(1);
     }
 
