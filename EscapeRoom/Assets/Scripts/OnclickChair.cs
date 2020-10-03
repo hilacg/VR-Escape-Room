@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class OnclickChair : MonoBehaviour, ClickAction
 {
-    [SerializeField] float xRotation;
-    [SerializeField] float yRotation;
-    [SerializeField] float zRotation;
+    [SerializeField] public GameObject chair;
+    [SerializeField] public float xRotation;
+    [SerializeField] public float yRotation;
+    [SerializeField] public float zRotation;
 
-    [SerializeField] float xPosition;
-    [SerializeField] float yPosition;
-    [SerializeField] float zPosition;
+
+    private Transform chairTransform;
+    void Start()
+    {
+        chairTransform = chair.gameObject.transform;
+    }
+
     public void doAction()
     {
-        print("check");
-        transform.rotation = new Quaternion(xRotation, yRotation, zRotation , 0);
-        transform.position = new Vector3(xPosition, yPosition, zPosition);
+        chairTransform.Rotate(xRotation, yRotation, zRotation, Space.World);
+        xRotation *= -1;
+        yRotation *= -1;
+        zRotation *= -1;
     }
 }
