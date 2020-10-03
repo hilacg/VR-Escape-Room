@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MarioOpenPage.unity
     guid: e2bbfa2189278f7408e86f4461a650df
+  - enabled: 1
+    path: Assets/Scenes/MarioMain.unity
+    guid: da256f71c48f46f48b67df10e980e737
   m_configObjects: {}

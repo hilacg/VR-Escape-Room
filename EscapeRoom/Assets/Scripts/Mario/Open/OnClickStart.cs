@@ -24,9 +24,7 @@ public class OnClickStart : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             rend.sharedMaterial = materials[1];
-            //Application.LoadLevel(0);
-            SceneHandler sceneHandler = GameObject.FindGameObjectWithTag("SceneHandler").GetComponent<SceneHandler>();
-            sceneHandler.LoadScene();
+            Application.LoadLevel(2);
         }
         else
         {

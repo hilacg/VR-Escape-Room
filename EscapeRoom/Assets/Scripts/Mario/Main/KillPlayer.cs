@@ -12,7 +12,7 @@ public class KillPlayer : MonoBehaviour
         audio.Play();
         MainPlayer.SetActive(false);
         yield return new WaitForSeconds(1);
-        Application.LoadLevel(1);
+        Application.LoadLevel(2);
         GlobalCoins.CoinCount = 0;
         GlobalScore.ScoreCount = 0;
         GlobalTime.TimePassed = 0;
