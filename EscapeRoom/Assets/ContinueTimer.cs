@@ -6,6 +6,6 @@ public class ContinueTimer : MonoBehaviour
 {
     void Start()
     {
-        TimerDisplay.startTime = PlayerPrefs.GetFloat("startTime");
+        TimerHelper.initialTime();
     }
 }

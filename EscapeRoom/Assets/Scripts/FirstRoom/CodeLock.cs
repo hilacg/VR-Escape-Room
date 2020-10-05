@@ -38,8 +38,8 @@ public class CodeLock : MonoBehaviour
         else
         {
             Debug.Log("Worng Code");
-            RedLight.SetActive(false);
-            GreenLight.SetActive(true);
+            RedLight.SetActive(true);
+            GreenLight.SetActive(false);
         }
     }
 

@@ -8,28 +8,16 @@ public class TimerDisplay : MonoBehaviour
     public static float startTime;
     public static float globaltime;
     private static bool timerOn = false;
+    private static bool gameEnd = false;
     [SerializeField] public Text timerText;
-
-
-    void Start()
-    {
-        float getTime = PlayerPrefs.GetFloat("lkaugsdfk");
-        Debug.Log(getTime);
-        if (getTime <= 0)
-        {
-            startTime = Time.time;
-        }
-        // Debug.Log(startTime);
-    }
 
     void Update()
     {
         if (timerOn)
         {
-            globaltime = Time.time - startTime;
-
-            if (globaltime < 60)
+            if (!gameEnd)
             {
+                globaltime = Time.time - startTime;
                 string minutes = ((int)globaltime / 60).ToString();
                 string seconds = (globaltime % 60).ToString("f2");
                 timerText.text = "Time: " + minutes + ":" + seconds;
@@ -48,6 +36,6 @@ public class TimerDisplay : MonoBehaviour
 
     public static void stopTimer()
     {
-        timerOn = true;
+        timerOn = false;
     }
 }
