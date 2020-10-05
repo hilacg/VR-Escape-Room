@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class LoadMario : MonoBehaviour, ClickAction
 {
-    private SceneHandler sceneHandler;
+    // private SceneHandler sceneHandler;
 
     void Start()
     {
-        sceneHandler = GameObject.FindGameObjectWithTag("SceneHandler").GetComponent<SceneHandler>();
+        // sceneHandler = GameObject.FindGameObjectWithTag("SceneHandler").GetComponent<SceneHandler>();
     }
     public void doAction()
     {
-        sceneHandler.SaveScene();
+        //.SaveScene();
+        PlayerPrefs.SetFloat("startTime", TimerDisplay.startTime);
         Cursor.lockState = CursorLockMode.Confined;
-        sceneHandler.LoadScene(1);
+        //.LoadScene(1);
+        Application.LoadLevel(1);
     }
 
 }
