@@ -1825,12 +1825,17 @@ PrefabInstance:
     - target: {fileID: -442008802247369479, guid: d4d910c07792c8a47a3ee944d053656d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0345
+      value: 0.03707
       objectReference: {fileID: 0}
     - target: {fileID: -442008802247369479, guid: d4d910c07792c8a47a3ee944d053656d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.031
+      value: 0.02965
+      objectReference: {fileID: 0}
+    - target: {fileID: -442008802247369479, guid: d4d910c07792c8a47a3ee944d053656d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01883
       objectReference: {fileID: 0}
     - target: {fileID: -287791496600408132, guid: d4d910c07792c8a47a3ee944d053656d,
         type: 3}
@@ -4227,7 +4232,7 @@ GameObject:
   - component: {fileID: 2041963300}
   - component: {fileID: 2041963299}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ExitTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4424,7 +4429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8588e1157e344729ea10590883cf67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimerText: {fileID: 881248956}
+  timerText: {fileID: 0}
 --- !u!1 &2145997474
 GameObject:
   m_ObjectHideFlags: 0

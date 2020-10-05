@@ -13,7 +13,14 @@ public class HighScoreTable : MonoBehaviour
     {
         entryTemplate.gameObject.SetActive(false);
 
-        // AddHighScoreEntry(40, "cmk");
+        int isNew = PlayerPrefs.GetInt("New");
+        float playerTime = PlayerPrefs.GetFloat("EndTime");
+        if (playerTime < 60 && isNew > 0)
+        {
+            // todo pop up add name
+            // AddHighScoreEntry(playerTime, "cmk");
+        }
+
 
         string jsonString = PlayerPrefs.GetString("HighScoreTable");
         HighScores HighScores = JsonUtility.FromJson<HighScores>(jsonString);
@@ -57,7 +64,7 @@ public class HighScoreTable : MonoBehaviour
             case 3: rankString = "3RD"; break;
         }
 
-        int score = highScoreEntry.score;
+        float score = highScoreEntry.score;
         string name = highScoreEntry.name;
 
         entryTransform.Find("PosText").GetComponent<Text>().text = rankString;
@@ -75,7 +82,7 @@ public class HighScoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
-    private void AddHighScoreEntry(int score, string name)
+    private void AddHighScoreEntry(float score, string name)
     {
         HighScoreEntry highScoreEntry = new HighScoreEntry { score = score, name = name };
 
@@ -102,7 +109,7 @@ public class HighScoreTable : MonoBehaviour
     [System.Serializable]
     private class HighScoreEntry
     {
-        public int score;
+        public float score;
         public string name;
 
     }

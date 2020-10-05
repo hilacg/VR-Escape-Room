@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterToOpenScreen : MonoBehaviour
+public class EnterToOpenScreen : MonoBehaviour, ClickAction
 {
-    public void BackToStart()
+    public void doAction()
     {
-        Application.LoadLevel(0); 
+        PlayerPrefs.SetInt("New", 100);
+        Application.LoadLevel(0);
     }
 }

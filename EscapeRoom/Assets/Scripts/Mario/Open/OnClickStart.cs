@@ -24,7 +24,7 @@ public class OnClickStart : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             rend.sharedMaterial = materials[1];
-            Application.LoadLevel(2);
+            Application.LoadLevel(3);
         }
         else
         {
