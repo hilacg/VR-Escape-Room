@@ -5,9 +5,7 @@ using UnityEngine;
 public class OnClickRevealSafe : MonoBehaviour
 {
     [SerializeField]
-    public GameObject poly;
-    [SerializeField]
-    private Animator _anim;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +13,7 @@ public class OnClickRevealSafe : MonoBehaviour
 
     void OnMouseDown()
     {
-        this._anim.SetTrigger("RevealSafe");
+      //  this._anim.SetTrigger("RevealSafe");
        // _anim.SetTrigger("RevealSafe");
     }
 }

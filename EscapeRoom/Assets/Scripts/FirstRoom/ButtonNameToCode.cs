@@ -7,5 +7,6 @@ public class ButtonNameToCode : MonoBehaviour, ClickAction
     public void doAction()
     {
         Code.code = Code.code + this.name;
+        Debug.Log(this.name);
     }
 }
