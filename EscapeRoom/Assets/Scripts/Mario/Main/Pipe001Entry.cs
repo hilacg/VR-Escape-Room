@@ -39,6 +39,6 @@ public class Pipe001Entry : MonoBehaviour
         yield return new WaitForSeconds(2);
         PipeEntry.GetComponent<Animator>().enabled = false;
         PipeEntry.transform.position = new Vector3(0, -1000, 0);
-        Application.LoadLevel(3);
+        Application.LoadLevel(4);
     }
 }
