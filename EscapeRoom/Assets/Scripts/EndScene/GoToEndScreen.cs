@@ -6,6 +6,6 @@ public class GoToEndScreen : MonoBehaviour
 {
     void OnTriggerEnter()
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel(5);
     }
 }
