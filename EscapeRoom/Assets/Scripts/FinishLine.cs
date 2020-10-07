@@ -7,6 +7,6 @@ public class FinishLine : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerPrefs.SetFloat("Time", TimerDisplay.globaltime);
-        Application.LoadLevel(5);
+        Application.LoadLevel(Scences.EndScreen);
     }
 }

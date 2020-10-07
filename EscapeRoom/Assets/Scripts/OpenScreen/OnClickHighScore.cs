@@ -7,6 +7,6 @@ public class OnClickHighScore : MonoBehaviour, ClickAction
     public void doAction()
     {
         PlayerPrefs.SetInt("New", 0);
-        Application.LoadLevel(5);
+        Application.LoadLevel(Scences.EndScreen);
     }
 }

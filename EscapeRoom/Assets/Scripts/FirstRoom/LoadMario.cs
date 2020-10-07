@@ -8,7 +8,7 @@ public class LoadMario : MonoBehaviour, ClickAction
     {
         PlayerPrefs.SetFloat("startTime", TimerDisplay.startTime);
         Cursor.lockState = CursorLockMode.Confined;
-        Application.LoadLevel(2);
+        Application.LoadLevel(Scences.SecondRoom);
     }
 
 }

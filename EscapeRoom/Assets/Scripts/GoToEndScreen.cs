@@ -8,6 +8,6 @@ public class GoToEndScreen : MonoBehaviour
     {
         PlayerPrefs.SetFloat("EndTime", TimerDisplay.globaltime);
         PlayerPrefs.SetInt("New", 100);
-        Application.LoadLevel(5);
+        Application.LoadLevel(Scences.EndScreen);
     }
 }

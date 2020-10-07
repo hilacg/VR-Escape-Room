@@ -15,7 +15,7 @@ public class GoBackToOpenScreen : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel(Scences.OpenScreen);
         }
     }
 }
