@@ -9,7 +9,7 @@ public class HighScoreTable : MonoBehaviour
     [SerializeField] public Transform entryTemplate;
     private List<Transform> highScoreEntryTransformList;
 
-    private void Awake()
+    private void Start()
     {
         entryTemplate.gameObject.SetActive(false);
 
@@ -17,6 +17,7 @@ public class HighScoreTable : MonoBehaviour
         float playerTime = PlayerPrefs.GetFloat("EndTime");
         if (playerTime < 60 && isNew > 0)
         {
+            print("check");
             // todo pop up add name
             // AddHighScoreEntry(playerTime, "cmk");
         }
