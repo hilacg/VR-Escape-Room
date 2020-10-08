@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyFound : MonoBehaviour
+public class KeyFound : MonoBehaviour, ClickAction
 {
-    [SerializeField] 
+     [SerializeField] 
     public GameObject Key;
-
-    void OnMouseDown()
+  
+    public void doAction()
     {
         Key.SetActive(false);
         SecondRoomCheck.foundKey();
-        Debug.Log("Foud key");
     }
 }

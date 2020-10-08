@@ -12,9 +12,11 @@ public class ColorCodeSafe : MonoBehaviour
     [SerializeField]
     public GameObject RedLight;
     [SerializeField]
+    public GameObject Key;
     public string code = "";
     public string attemptedCode;
     private int codeLength;
+    public bool foundCode = false;
 
     // Start is called before the first frame update
 
@@ -23,6 +25,7 @@ public class ColorCodeSafe : MonoBehaviour
         codeLength = code.Length;
         RedLight.SetActive(true);
         GreenLight.SetActive(false);
+        Key.SetActive(false);
     }
     void CheckCode()
     {
@@ -32,6 +35,11 @@ public class ColorCodeSafe : MonoBehaviour
             animator.SetTrigger("OpenSafe");
             RedLight.SetActive(false);
             GreenLight.SetActive(true);
+            if (!foundCode)
+            {
+                foundCode = true;
+                Key.SetActive(true);
+            }
 
 
         }
@@ -51,7 +59,9 @@ public class ColorCodeSafe : MonoBehaviour
             attemptedCode = Code.code;
 
             CheckCode();
+            Code.code = "";
             attemptedCode = "";
+
         }
     }
 }

@@ -22,9 +22,8 @@ public class OnRadioClick : MonoBehaviour
         {
             anim.SetTrigger("RevealSafe");
             Pannel.SetActive(true);
+            StartCoroutine(showClue());
         }
-        StartCoroutine(showClue());
-     //   this.showClue();
     }
 
     public IEnumerator showClue()
