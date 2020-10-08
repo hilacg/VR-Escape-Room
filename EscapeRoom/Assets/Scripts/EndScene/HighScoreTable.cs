@@ -18,7 +18,7 @@ public class HighScoreTable : MonoBehaviour
         string jsonString = PlayerPrefs.GetString("HighScoreTable");
         HighScores listHighScores = JsonUtility.FromJson<HighScores>(jsonString);
 
-        if(listHighScores.highScoreEntryList.Count != 10)
+        if(listHighScores == null)
         {
             Debug.Log("add defaults");
             highScoreEntryList = new List<HighScoreEntry>()
