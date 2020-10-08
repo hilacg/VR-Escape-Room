@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,40 +9,83 @@ public class HighScoreTable : MonoBehaviour
     [SerializeField] public Transform entryContainer;
     [SerializeField] public Transform entryTemplate;
     private List<Transform> highScoreEntryTransformList;
+    private List<HighScoreEntry> highScoreEntryList;
 
     private void Start()
     {
         entryTemplate.gameObject.SetActive(false);
+            
+        string jsonString = PlayerPrefs.GetString("HighScoreTable");
+        HighScores listHighScores = JsonUtility.FromJson<HighScores>(jsonString);
+
+        if(listHighScores.highScoreEntryList.Count != 10)
+        {
+            Debug.Log("noooooooo");
+            highScoreEntryList = new List<HighScoreEntry>()
+            {
+               new HighScoreEntry { minutes = 30, seconds = 10},
+               new HighScoreEntry { minutes = 30, seconds = 00},
+               new HighScoreEntry { minutes = 30, seconds = 20},
+               new HighScoreEntry { minutes = 30, seconds = 25},
+               new HighScoreEntry { minutes = 30, seconds = 10},
+               new HighScoreEntry { minutes = 30, seconds = 59},
+               new HighScoreEntry { minutes = 30, seconds = 10},
+               new HighScoreEntry { minutes = 30, seconds = 10},
+               new HighScoreEntry { minutes = 30, seconds = 10},
+               new HighScoreEntry { minutes = 30, seconds = 10}
+            };
+            HighScores defaultHighScores = new HighScores { highScoreEntryList = highScoreEntryList };
+            SortList(defaultHighScores);
+            string json = JsonUtility.ToJson(defaultHighScores);
+            PlayerPrefs.SetString("HighScoreTable", json);
+            PlayerPrefs.Save();
+            jsonString = PlayerPrefs.GetString("HighScoreTable");
+            listHighScores = JsonUtility.FromJson<HighScores>(jsonString);
+        }
 
         int isNew = PlayerPrefs.GetInt("New");
         float playerTime = PlayerPrefs.GetFloat("EndTime");
-        if (playerTime < 60 && isNew > 0)
+        int minutes = ((int)playerTime)/60;
+        int seconds = (int)((playerTime % 60)*100);         
+        if (minutes < 60 && isNew > 0)
         {
-            print("check");
-            // todo pop up add name
-            // AddHighScoreEntry(playerTime, "cmk");
+            AddHighScoreEntry(minutes, seconds);
+            PlayerPrefs.SetInt("New", 0);
+            jsonString = PlayerPrefs.GetString("HighScoreTable");
+            listHighScores = JsonUtility.FromJson<HighScores>(jsonString);
         }
 
-
-        string jsonString = PlayerPrefs.GetString("HighScoreTable");
-        HighScores HighScores = JsonUtility.FromJson<HighScores>(jsonString);
-
-        for (int i = 0; i < HighScores.highScoreEntryList.Count; i++)
-        {
-            for (int j = i + 1; j < HighScores.highScoreEntryList.Count; j++)
-            {
-                if(HighScores.highScoreEntryList[j].score < HighScores.highScoreEntryList[i].score)
-                {
-                    HighScoreEntry tmp = HighScores.highScoreEntryList[i];
-                    HighScores.highScoreEntryList[i] = HighScores.highScoreEntryList[j];
-                    HighScores.highScoreEntryList[j] = tmp;
-                }
-            }
-        }
+        SortList(listHighScores);
+        
         highScoreEntryTransformList = new List<Transform>();
-        foreach (HighScoreEntry highScoreEntry in HighScores.highScoreEntryList)
+        foreach (HighScoreEntry highScoreEntry in listHighScores.highScoreEntryList)
         {
             CreateHighScoreEntryTransform(highScoreEntry, entryContainer, highScoreEntryTransformList);
+        }
+    }
+
+     private void SortList(HighScores listHighScores)
+    {
+        for (int i = 0; i < listHighScores.highScoreEntryList.Count; i++)
+        {
+            for (int j = i + 1; j < listHighScores.highScoreEntryList.Count; j++)
+            {
+                if (listHighScores.highScoreEntryList[j].minutes == listHighScores.highScoreEntryList[i].minutes)
+                {
+                    if (listHighScores.highScoreEntryList[j].seconds < listHighScores.highScoreEntryList[i].seconds)
+                    {
+                        HighScoreEntry tmp = listHighScores.highScoreEntryList[i];
+                        listHighScores.highScoreEntryList[i] = listHighScores.highScoreEntryList[j];
+                        listHighScores.highScoreEntryList[j] = tmp;
+                    }
+                }
+                else if (listHighScores.highScoreEntryList[j].minutes < listHighScores.highScoreEntryList[i].minutes)
+                {
+                    HighScoreEntry tmp = listHighScores.highScoreEntryList[i];
+                    listHighScores.highScoreEntryList[i] = listHighScores.highScoreEntryList[j];
+                    listHighScores.highScoreEntryList[j] = tmp;
+                }
+            }
         }
     }
 
@@ -65,40 +109,67 @@ public class HighScoreTable : MonoBehaviour
             case 3: rankString = "3RD"; break;
         }
 
-        float score = highScoreEntry.score;
-        string name = highScoreEntry.name;
-
+        int score = highScoreEntry.minutes;
+        int scoreseconds = highScoreEntry.seconds;
+        
         entryTransform.Find("PosText").GetComponent<Text>().text = rankString;
-        entryTransform.Find("NameText").GetComponent<Text>().text = name;
-        entryTransform.Find("ScoreText").GetComponent<Text>().text = score.ToString() + "MIN";
+        string minutes = (score).ToString();
+        string seconds = scoreseconds.ToString();
+        entryTransform.Find("ScoreText").GetComponent<Text>().text = minutes + ":" + seconds + " MIN";
 
         entryTransform.Find("BackGround").gameObject.SetActive(rank % 2 == 1);
 
         if( rank == 1)
         {
             entryTransform.Find("PosText").GetComponent<Text>().color = Color.yellow;
-            entryTransform.Find("NameText").GetComponent<Text>().color = Color.yellow;
             entryTransform.Find("ScoreText").GetComponent<Text>().color = Color.yellow;
         }
         transformList.Add(entryTransform);
     }
 
-    private void AddHighScoreEntry(float score, string name)
+    private void AddHighScoreEntry(int minutes, int seconds)
     {
-        HighScoreEntry highScoreEntry = new HighScoreEntry { score = score, name = name };
+        HighScoreEntry highScoreEntry = new HighScoreEntry { minutes = minutes , seconds = seconds};
 
         string jsonString = PlayerPrefs.GetString("HighScoreTable");
         HighScores HighScores = JsonUtility.FromJson<HighScores>(jsonString);
-
-        if(HighScores.highScoreEntryList[9].score > highScoreEntry.score)
+        int max = findMax(HighScores.highScoreEntryList);
+        if (HighScores.highScoreEntryList[max].minutes == highScoreEntry.minutes)
         {
-            HighScores.highScoreEntryList[9] = highScoreEntry;
+            if (HighScores.highScoreEntryList[max].seconds > highScoreEntry.seconds)
+            {
+                HighScores.highScoreEntryList[max] = highScoreEntry;
+            }
         }
-        // HighScores.highScoreEntryList.Add(highScoreEntry);
+        else if (HighScores.highScoreEntryList[max].minutes > highScoreEntry.minutes)
+        {
+            HighScores.highScoreEntryList[max] = highScoreEntry;
+        }
 
         string json = JsonUtility.ToJson(HighScores);
         PlayerPrefs.SetString("HighScoreTable", json);
         PlayerPrefs.Save();
+    }
+
+    private int findMax(List<HighScoreEntry> highScoreEntryList)
+    {
+        int max = 0;
+        for (int i=1; i<10;i++)
+        {
+            if (highScoreEntryList[max].minutes == highScoreEntryList[i].minutes)
+            {
+                if (highScoreEntryList[max].seconds < highScoreEntryList[i].seconds)
+                {
+                    max = i;
+                }
+            } else if (highScoreEntryList[max].minutes < highScoreEntryList[i].minutes)
+            {
+                max = i;
+            }
+
+
+        }
+        return max;
     }
 
     private class HighScores
@@ -110,8 +181,8 @@ public class HighScoreTable : MonoBehaviour
     [System.Serializable]
     private class HighScoreEntry
     {
-        public float score;
-        public string name;
-
+        public int minutes;
+        public int seconds;
     }
 }
+
