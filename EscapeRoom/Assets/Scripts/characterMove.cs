@@ -7,14 +7,14 @@ public class characterMove : MonoBehaviour {
     //public static bool moveforward;
     public float speed = 2F;
     private CharacterController controller;
-    [SerializeField] private Transform vrHead;
+    /*[SerializeField]*/ private Transform vrHead;
     private bool moveForword = false;
     //float startTime = -1;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        // vrHead = Camera.main.transform;
+        vrHead = Camera.main.transform;
     }
 
     void Update()
