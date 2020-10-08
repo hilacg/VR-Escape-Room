@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressColor : MonoBehaviour
+public class PressColor : MonoBehaviour, ClickAction
 {
-    void OnMouseDown()
+    public void doAction()
     {
         Code.code += this.name;
         Debug.Log(this.name);
