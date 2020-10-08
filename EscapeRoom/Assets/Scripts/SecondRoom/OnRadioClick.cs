@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnRadioClick : MonoBehaviour
+public class OnRadioClick : MonoBehaviour, ClickAction
 {
     [SerializeField]
     private Animator anim;
@@ -16,7 +16,7 @@ public class OnRadioClick : MonoBehaviour
     public GameObject Yellow;
     [SerializeField]
     public GameObject Green;
-    void OnMouseDown()
+    public void doAction()
     {
         if (SecondRoomCheck.IsBatteryFound())
         {

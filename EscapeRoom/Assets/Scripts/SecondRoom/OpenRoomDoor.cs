@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenRoomDoor : MonoBehaviour
+public class OpenRoomDoor : MonoBehaviour, ClickAction
 {
 
     [SerializeField]
     private Animator animator;
-    void OnMouseDown()
+    public void doAction()
     {
         if (SecondRoomCheck.IsKeyFound())
         {
