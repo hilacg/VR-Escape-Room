@@ -7,12 +7,12 @@ public class standOnShow : MonoBehaviour
 {
     [SerializeField] public GameObject toShow;
 
-    void OnTriggerEnter()
+    public void OnTriggerEnter()
     {
         toShow.SetActive(true);
     }
 
-    void OnTriggerExit()
+    public void OnTriggerExit()
     {
         toShow.SetActive(false);
     }
