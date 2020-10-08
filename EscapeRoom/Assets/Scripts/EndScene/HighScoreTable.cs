@@ -20,19 +20,19 @@ public class HighScoreTable : MonoBehaviour
 
         if(listHighScores.highScoreEntryList.Count != 10)
         {
-            Debug.Log("noooooooo");
+            Debug.Log("add defaults");
             highScoreEntryList = new List<HighScoreEntry>()
             {
-               new HighScoreEntry { minutes = 30, seconds = 10},
-               new HighScoreEntry { minutes = 30, seconds = 00},
-               new HighScoreEntry { minutes = 30, seconds = 20},
-               new HighScoreEntry { minutes = 30, seconds = 25},
-               new HighScoreEntry { minutes = 30, seconds = 10},
-               new HighScoreEntry { minutes = 30, seconds = 59},
-               new HighScoreEntry { minutes = 30, seconds = 10},
-               new HighScoreEntry { minutes = 30, seconds = 10},
-               new HighScoreEntry { minutes = 30, seconds = 10},
-               new HighScoreEntry { minutes = 30, seconds = 10}
+               new HighScoreEntry { minutes = 30, seconds = 1000},
+               new HighScoreEntry { minutes = 30, seconds = 0000},
+               new HighScoreEntry { minutes = 30, seconds = 2000},
+               new HighScoreEntry { minutes = 30, seconds = 2500},
+               new HighScoreEntry { minutes = 30, seconds = 1000},
+               new HighScoreEntry { minutes = 30, seconds = 5900},
+               new HighScoreEntry { minutes = 30, seconds = 1000},
+               new HighScoreEntry { minutes = 30, seconds = 1000},
+               new HighScoreEntry { minutes = 30, seconds = 1000},
+               new HighScoreEntry { minutes = 30, seconds = 1000}
             };
             HighScores defaultHighScores = new HighScores { highScoreEntryList = highScoreEntryList };
             SortList(defaultHighScores);
